@@ -2,14 +2,20 @@ part of json_rpc;
 
 class RpcServer {
   
-  ServerConnector connector;
+  RpcProtocol protocol;
   HashMap<String, StreamController> _controllers = new HashMap<String, StreamController>();
+  StreamController<RpcResponse> _errorReceivedController = new StreamController.broadcast();
   List<RpcUser> _users = [];
   
-  RpcServer(this.connector) {
-    connector.server = this;
-    connector.userConnected.listen(_addUser);
+  RpcServer(this.protocol) {
+    protocol.server = this;
+    protocol.userConnected.listen(_addUser);
   }
+  
+  /**
+   * Returns a [Stream] that will send back data as an [RpcResponse] when a response with no ID is received from the server.
+   */
+  Stream<RpcResponse> get errorReceived => _errorReceivedController.stream;
   
   Stream on(String method) {
     // Create completer if it doesn't exist.
@@ -29,11 +35,15 @@ class RpcServer {
     _controllers[req.method].add(req);
   }
   
+  void _handleError(RpcResponse req) {
+    _errorReceivedController.add(req);
+  }
+  
   /*
    * Starts listening and accepting connections.
    */
-  Future listen() {
-    return connector.listen();
+  Future listen(dynamic address, int port) {
+    return protocol.listen(address, port);
   }
   
   /*
@@ -43,6 +53,7 @@ class RpcServer {
     _users.add(user);
     
     user.requestReceived.listen(_handleRequest);
+    user.errorReceived.listen(_handleError);
   }
   
   /*
@@ -62,12 +73,17 @@ class RpcServer {
    * Stops listening for new connections and closes all current connections.
    */
   Future close() {
+    List<Future> futures = [];
     // Close request on each user
-    _users.forEach((HttpServerConnectorUser user) {
-      user.close();
+    _users.forEach((RpcUser user) {
+      futures.add(user.close());
     });
     
-    connector.close();
+    return Future.wait(futures).then((_) {
+      protocol.close();
+    });
+    
+    
   }
   
 }

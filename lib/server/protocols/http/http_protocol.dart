@@ -1,28 +1,27 @@
 part of json_rpc;
 
-class WebSocketServerConnector extends ServerConnector{
+class HttpProtocol extends RpcProtocol {
   
   HttpServer _server;
   
-  WebSocketServerConnector(address, port) : super(address, port, true);
+  HttpProtocol();
   
-  /*
+  /**
    * Begins listening and handling connections.
    */
-  Future listen() {
+  Future listen(dynamic address, int port) {
     return HttpServer.bind(address, port).then((HttpServer server) {
       this._server = server;
       return server.listen(_handleConnection);
     });
   }
   
+  Future connectTo(String url) {}
+  
   _handleConnection(HttpRequest req) {
+    HttpUser user = new HttpUser(req);
     
-    WebSocketTransformer.upgrade(req).then((WebSocket ws) {
-      WebSocketServerConnectorUser user = new WebSocketServerConnectorUser(this, ws);
-      _userConnectedController.add(user);
-    });
-   
+    _userConnectedController.add(user);
   }
   
   Future close() {

@@ -6,25 +6,30 @@ import 'dart:collection';
 import 'dart:json' as JSON;
 import 'dart:io';
 
-// Client
+/*
+ * Client
+ */
 part 'client/rpc_client.dart';
-part 'client/connectors/client_connector.dart';
-part 'client/connectors/http_client_connector.dart';
-part 'client/connectors/websocket_client_connector.dart';
+part 'client/protocols/http_client_protocol.dart';
+part 'client/protocols/http_client_user.dart';
 
-// Server
+/*
+ * Server
+ */
 part 'server/rpc_server.dart';
 part 'server/rpc_user.dart';
-part 'server/connectors/server_connector.dart';
-part 'server/connectors/http_server_connector.dart';
-part 'server/connectors/http_server_connector_user.dart';
-
+part 'server/rpc_protocol.dart';
+// HTTP
+part 'server/protocols/http/http_protocol.dart';
+part 'server/protocols/http/http_user.dart';
 // WebSocket
-part 'server/connectors/websocket_server_connector.dart';
-part 'server/connectors/websocket_server_connector_user.dart';
+part 'server/protocols/websocket/websocket_protocol.dart';
+part 'server/protocols/websocket/websocket_user.dart';
 
 
-// Shared
+/*
+ * Shared
+ */
 part 'rpc_request.dart';
 part 'rpc_response.dart';
 part 'rpc_error.dart';

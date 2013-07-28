@@ -3,52 +3,38 @@ part of json_rpc;
 class RpcClient {
 
   /**
-   * [ClientConnector] to use to connect to the JSON-RPC server, default is HTTP.
+   * [RpcProtocol] to use to connect to the JSON-RPC server.
    */
-  ClientConnector connector;
+  RpcProtocol protocol;
+  
+  RpcUser user;
   
   HashMap<String, StreamController> _controllers = new HashMap<String, StreamController>();
-    
-  String _auth;
-  int _activeQueries = 0;
-  int _currentId = 0;
+  
+  StreamController<RpcResponse> _errorReceivedController = new StreamController.broadcast();
   
   /**
    * An [RpcClient] handles JSON-RPC calls to the specified [Uri] [uri].
    */
-  RpcClient(this.connector) {
-    connector.requestReceived.listen(_handleRequest);
-  }
-  
-  /**
-   * Returns the amount of currently active queries [int] to the JSON-RPC server.
-   */
-  int activeQueries() {
-    return _activeQueries;
-  }
+  RpcClient(this.protocol);
   
   /**
    * Connects to the JSON-RPC server.
    */
-  Future connect() {
-    return connector.connect();
+  Future connectTo(String url) {
+    return protocol.connectTo(url).then((RpcUser user) {
+      this.user = user;
+      user.requestReceived.listen(_handleRequest);
+      user.errorReceived.listen(_handleError);
+    });
   }
+  
+  Stream<RpcResponse> get errorReceived => _errorReceivedController.stream;
   
   /**
    * Sends an [RpcRequest] to the server and returns a [Future] that completes with an [RpcResponse].
    */
-  Future send(RpcRequest req) {
-        
-    // Used so we get a unique response.
-    req.id = _currentId;
-    _currentId++;
-
-    // Increase the amount of active queries.
-    _activeQueries++;
-    
-    // Send request to the server.
-    return connector.send(req);
-  }
+  Future request(RpcRequest req) => user.request(req);
   
   Stream on(String method) {
     // Create completer if it doesn't exist.
@@ -67,12 +53,16 @@ class RpcClient {
       print('Cannot handle');
     }
   }
+  
+  void _handleError(RpcResponse req) {
+    _errorReceivedController.add(req);
+  }
 
   /**
    * Closes the clients connection to the server.
    */
   void close() {
-    connector.close();
+    user.close();
   }
   
 }

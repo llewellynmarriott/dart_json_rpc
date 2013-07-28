@@ -33,6 +33,11 @@ class RpcRequest {
   RpcUser user;
   
   /**
+   * Completer that will complete with an [RpcResponse] when a response is received.
+   */
+  Completer responseReceivedCompleter = new Completer();
+  
+  /**
    * Creates a new [RpcRequest] to send to the RPC server.
    */
   RpcRequest(this.method, this.params);
@@ -54,10 +59,7 @@ class RpcRequest {
     resp.id = id;
     resp.request = this;
     
-    var error = new RpcError();
-    error.code = code;
-    error.message = message;
-    error.data = data;
+    var error = new RpcError(code, message, data);
     
     resp.error = error;
     

@@ -5,18 +5,15 @@ class RpcError {
   String message;
   dynamic data;
   
+  RpcError(this.code, this.message, this.data);
+  
   static RpcError fromJson(Map json) {
-    var error = new RpcError();
-    
-    error.code = json['code'];
-    error.message = json['message'];
-    error.data = json['data'];
-    
+    var error = new RpcError(json['code'], json['message'], json['data']);
     return error;
   }
   
   String toString() {
-    return '(' + code.toString() + ') ' + message + ' - ' + data;
+    return '(' + code.toString() + ') ' + message + ' - ' + data.toString();
   }
   
   Object toJson() {
