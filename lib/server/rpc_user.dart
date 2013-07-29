@@ -19,6 +19,8 @@ abstract class RpcUser {
    */
   List<RpcRequest> sentRequests = new List<RpcRequest>();
   
+  int _currentId = 0;
+  
   
   RpcUser();
   
@@ -35,8 +37,10 @@ abstract class RpcUser {
    * Sends an [RpcRequest] request and returns a Future that completes with a [RpcResponse] or completes with nothing if it is a notification (no ID set).
    */
   Future request(RpcRequest req) {
-    // Check if it needs to be added to list of sent requests (if it is not a notification).
-    if(req.id != null) {
+    
+    if(!req.notification) {
+      req.id = _currentId;
+      _currentId++;
       sentRequests.add(req);
     }
     

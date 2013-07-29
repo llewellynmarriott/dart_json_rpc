@@ -1,4 +1,4 @@
-name: json_rpc
+name: dart_json_rpc
 description: A sample command-line application
 
 #dependencies:

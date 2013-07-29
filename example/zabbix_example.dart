@@ -8,11 +8,13 @@ main() {
     print('Error: ' + resp.error.toString());
   });
   
-  client.connectTo("http://localhost:8080/").then((_) {
+  client.connectTo("http://10.70.8.20/zabbix/api_jsonrpc.php").then((_) {
     client.request(new RpcRequest("trigger.get", {})).then((RpcResponse resp) {
       print('Got resp!');
     });
   });
+  
+
   
   
    

@@ -29,6 +29,7 @@ class HttpClientUser extends RpcUser {
     var buffer = "";
     stream.listen((String data) {
       buffer += data;
+      print(data);
     }, onDone: () {
       _receiveJson(buffer);
     }, cancelOnError: true);
@@ -38,10 +39,11 @@ class HttpClientUser extends RpcUser {
   }
   
   Future _sendJson(String json) {
+    print(json);
     return _client.postUrl(Uri.parse(url)).then((HttpClientRequest req) {
       // JSON-RPC headers.
       req.headers.contentType = new ContentType( "application", "json-rpc", charset: "utf-8" );
-      //req.headers.add( HttpHeaders.CONNECTION, "keep-alive");
+      req.headers.add( HttpHeaders.CONNECTION, "keep-alive");
       req.write(json);
       // Finish the request.
       return req.close();

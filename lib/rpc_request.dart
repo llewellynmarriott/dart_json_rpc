@@ -42,6 +42,8 @@ class RpcRequest {
    */
   RpcRequest(this.method, this.params);
   
+  bool notification = false;
+  
   /**
    * Writes a response back to the user who sent this request with a matching ID.
    */
