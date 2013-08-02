@@ -1,4 +1,4 @@
-import '../lib/json_rpc.dart';
+import 'package:dart_json_rpc/json_rpc.dart';
 
 main() {
   

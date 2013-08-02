@@ -15,8 +15,6 @@ class HttpClientProtocol extends RpcProtocol {
     return c.future; 
   }
   
-  _handleConnection(HttpRequest req) {}
-  
   Future close() {
     Completer c = new Completer();
 
