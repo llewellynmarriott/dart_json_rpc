@@ -2,13 +2,18 @@ part of json_rpc;
 
 class HtmlWSClientProtocol extends RpcProtocol {
   
-  WebSocketProtocol();
+  HtmlWSClientProtocol();
   
   Future listen(address, port) {}
   
   Future connectTo(String url) {
     Completer c = new Completer();
-    c.complete(new HtmlWSClientUser(new WebSocket(url)));
+    var ws = new WebSocket(url);
+    var client = new HtmlWSClientUser(ws);
+    ws.onOpen.listen((_) {
+      c.complete(client);
+    });
+    
     return c.future;
   }
   

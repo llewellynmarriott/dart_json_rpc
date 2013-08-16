@@ -9,9 +9,9 @@ class RpcClient {
   
   RpcUser user;
   
-  HashMap<String, StreamController> _controllers = new HashMap<String, StreamController>();
+  HashMap<String, StreamController> controllers = new HashMap<String, StreamController>();
   
-  StreamController<RpcResponse> _errorReceivedController = new StreamController.broadcast();
+  StreamController<RpcResponse> errorReceivedController = new StreamController.broadcast();
   
   /**
    * An [RpcClient] handles JSON-RPC calls to the specified [Uri] [uri].
@@ -24,12 +24,12 @@ class RpcClient {
   Future connectTo(String url) {
     return protocol.connectTo(url).then((RpcUser user) {
       this.user = user;
-      user.requestReceived.listen(_handleRequest);
-      user.errorReceived.listen(_handleError);
+      user.requestReceived.listen(handleRequest);
+      user.errorReceived.listen(handleError);
     });
   }
   
-  Stream<RpcResponse> get errorReceived => _errorReceivedController.stream;
+  Stream<RpcResponse> get errorReceived => errorReceivedController.stream;
   
   /**
    * Sends an [RpcRequest] to the server and returns a [Future] that completes with an [RpcResponse].
@@ -38,24 +38,24 @@ class RpcClient {
   
   Stream on(String method) {
     // Create completer if it doesn't exist.
-    if(!_controllers.containsKey(method)) {
-      _controllers[method] = new StreamController.broadcast();
+    if(!controllers.containsKey(method)) {
+      controllers[method] = new StreamController.broadcast();
     }
     
-    return _controllers[method].stream;
+    return controllers[method].stream;
   }
   
-  void _handleRequest(RpcRequest req) {
+  void handleRequest(RpcRequest req) {
     // Create completer if it doesn't exist.
-    if(_controllers.containsKey(req.method)) {
-      _controllers[req.method].add(req);
+    if(controllers.containsKey(req.method)) {
+      controllers[req.method].add(req);
     } else {
       print('Cannot handle');
     }
   }
   
-  void _handleError(RpcResponse req) {
-    _errorReceivedController.add(req);
+  void handleError(RpcResponse req) {
+    errorReceivedController.add(req);
   }
 
   /**

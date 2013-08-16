@@ -7,7 +7,7 @@ abstract class RpcProtocol {
    */
   RpcServer server;
   
-  StreamController _userConnectedController = new StreamController.broadcast();
+  StreamController userConnectedController = new StreamController.broadcast();
  
   RpcProtocol();
   
@@ -15,6 +15,6 @@ abstract class RpcProtocol {
   Future close();
   Future connectTo(String url);
   
-  Stream get userConnected => _userConnectedController.stream;
+  Stream get userConnected => userConnectedController.stream;
   
 }

@@ -2,7 +2,7 @@ part of json_rpc;
 
 class WebSocketProtocol extends RpcProtocol {
   
-  HttpServer _server;
+  HttpServer httpServer;
   
   WebSocketProtocol();
   
@@ -11,8 +11,8 @@ class WebSocketProtocol extends RpcProtocol {
    */
   Future listen(address, port) {
     return HttpServer.bind(address, port).then((HttpServer server) {
-      this._server = server;
-      return server.listen(_handleConnection);
+      this.httpServer = server;
+      return server.listen(handleConnection);
     });
   }
   
@@ -22,18 +22,17 @@ class WebSocketProtocol extends RpcProtocol {
     });
   }
   
-  _handleConnection(HttpRequest req) {
-    
+  handleConnection(HttpRequest req) {
     WebSocketTransformer.upgrade(req).then((WebSocket ws) {
       WebSocketUser user = new WebSocketUser(ws);
-      _userConnectedController.add(user);
+      userConnectedController.add(user);
     });
    
   }
   
   Future close() {
     Completer c = new Completer();
-    _server.close();
+    server.close();
     c.complete();
     return c.future;
   }

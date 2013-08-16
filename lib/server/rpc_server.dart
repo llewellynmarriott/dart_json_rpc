@@ -3,40 +3,40 @@ part of json_rpc;
 class RpcServer {
   
   RpcProtocol protocol;
-  HashMap<String, StreamController> _controllers = new HashMap<String, StreamController>();
-  StreamController<RpcResponse> _errorReceivedController = new StreamController.broadcast();
-  List<RpcUser> _users = [];
+  HashMap<String, StreamController> controllers = new HashMap<String, StreamController>();
+  StreamController<RpcResponse> errorReceivedController = new StreamController.broadcast();
+  List<RpcUser> users = [];
   
   RpcServer(this.protocol) {
     protocol.server = this;
-    protocol.userConnected.listen(_addUser);
+    protocol.userConnected.listen(addUser);
   }
   
   /**
    * Returns a [Stream] that will send back data as an [RpcResponse] when a response with no ID is received from the server.
    */
-  Stream<RpcResponse> get errorReceived => _errorReceivedController.stream;
+  Stream<RpcResponse> get errorReceived => errorReceivedController.stream;
   
   Stream on(String method) {
     // Create completer if it doesn't exist.
-    if(!_controllers.containsKey(method)) {
-      _controllers[method] = new StreamController.broadcast();
+    if(!controllers.containsKey(method)) {
+      controllers[method] = new StreamController.broadcast();
     }
     
-    return _controllers[method].stream;
+    return controllers[method].stream;
   }
   
-  void _handleRequest(RpcRequest req) {
+  void handleRequest(RpcRequest req) {
     // Create completer if it doesn't exist.
-    if(!_controllers.containsKey(req.method)) {
-      _controllers[req.method] = new StreamController.broadcast();
+    if(!controllers.containsKey(req.method)) {
+      controllers[req.method] = new StreamController.broadcast();
     }
     
-    _controllers[req.method].add(req);
+    controllers[req.method].add(req);
   }
   
-  void _handleError(RpcResponse req) {
-    _errorReceivedController.add(req);
+  void handleError(RpcResponse req) {
+    errorReceivedController.add(req);
   }
   
   /*
@@ -49,11 +49,15 @@ class RpcServer {
   /*
    * Adds a currently connected user to the list of users and begins listening for requests.
    */
-  void _addUser(RpcUser user) {
-    _users.add(user);
+  void addUser(RpcUser user) {
+    users.add(user);
     
-    user.requestReceived.listen(_handleRequest);
-    user.errorReceived.listen(_handleError);
+    user.requestReceived.listen(handleRequest);
+    user.errorReceived.listen(handleError);
+    user.connectionClosed.listen((_) {
+      print('User disconnected');
+      users.remove(user);
+    });
   }
   
   /*
@@ -61,13 +65,8 @@ class RpcServer {
    */
   void removeUser(RpcUser user) {
     user.close();
-    _users.remove(user);
+    users.remove(user);
   }
-  
-  /*
-   * Returns a list of currently connected users.
-   */
-  List<RpcUser> get users => _users.toList(growable: false);
   
   /*
    * Stops listening for new connections and closes all current connections.
@@ -75,7 +74,7 @@ class RpcServer {
   Future close() {
     List<Future> futures = [];
     // Close request on each user
-    _users.forEach((RpcUser user) {
+    users.forEach((RpcUser user) {
       futures.add(user.close());
     });
     

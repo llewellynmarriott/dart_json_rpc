@@ -56,12 +56,10 @@ class RpcRequest {
     return user.respond(resp);
   }
   
-  Future respondError(int code, String message, var data) {
+  Future respondError(RpcError error) {
     var resp = new RpcResponse();
     resp.id = id;
     resp.request = this;
-    
-    var error = new RpcError(code, message, data);
     
     resp.error = error;
     

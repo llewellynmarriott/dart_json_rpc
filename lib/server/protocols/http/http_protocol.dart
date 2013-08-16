@@ -21,7 +21,7 @@ class HttpProtocol extends RpcProtocol {
   _handleConnection(HttpRequest req) {
     HttpUser user = new HttpUser(req);
     
-    _userConnectedController.add(user);
+    userConnectedController.add(user);
   }
   
   Future close() {

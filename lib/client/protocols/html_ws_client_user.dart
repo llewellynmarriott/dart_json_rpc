@@ -7,11 +7,11 @@ class HtmlWSClientUser extends RpcUser {
   HashMap<dynamic, Completer> activeRequests = new HashMap<dynamic, Completer>();
   
   HtmlWSClientUser(this.ws) {
-   ws.onMessage.listen(_listen);
+   ws.onMessage.listen(listen);
   }
   
-  _listen(MessageEvent e) {
-    _receiveJson(e.data);
+  listen(MessageEvent e) {
+    receiveJson(e.data);
   }
   
   Future send(RpcRequest req) {
@@ -28,15 +28,15 @@ class HtmlWSClientUser extends RpcUser {
     return c.future;
   }
   
-  Future _sendJson(String json) {
+  Future sendJson(String json) {
     Completer c = new Completer();
     ws.send(json);
-    print('Sent: $json');
     c.complete();
     return c.future;
   }
   
-  Future _closeConnection() {
-    return ws.close();
+  Future close() {
+    ws.close(1000, 'RPC closing connection');
+    return super.close();
   }
 } 

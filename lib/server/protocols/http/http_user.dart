@@ -5,7 +5,7 @@ class HttpUser extends RpcUser {
   HttpRequest httpRequest;
   
   HttpUser(this.httpRequest) {
-    _readRequest();
+    readRequest();
   }
   
   Future connect(Uri uri) {}
@@ -13,25 +13,23 @@ class HttpUser extends RpcUser {
   /**
    * Reads data from the [HttpRequest] and transforms it into a [RpcRequest] object then calls the event indicating there is a new request.
    */
-  _readRequest() {
+  readRequest() {
     String buffer = "";
     httpRequest.transform(new StringDecoder()).listen((String data) {
       buffer+=data;
     }, onDone: () {
-      _receiveJson(buffer);      
+      receiveJson(buffer);      
     }, onError: (e) {
       print(e);
     }, cancelOnError: true);
   }
   
-  Future _closeConnection() {
-    Completer c = new Completer();
+  Future close() {
     httpRequest.response.close();
-    c.complete();
-    return c.future;
+    return super.close();
   }
   
-  Future _sendJson(Object json) {
+  Future sendJson(Object json) {
     Completer c = new Completer();
     httpRequest.response.write(json);
     httpRequest.response.close();
