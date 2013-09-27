@@ -60,9 +60,7 @@ class RpcRequest {
     var resp = new RpcResponse();
     resp.id = id;
     resp.request = this;
-    
     resp.error = error;
-    
     return user.respond(resp);
   }
   

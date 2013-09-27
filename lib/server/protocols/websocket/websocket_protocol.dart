@@ -6,13 +6,10 @@ class WebSocketProtocol extends RpcProtocol {
   
   WebSocketProtocol();
   
-  /*
-   * Begins listening and handling connections.
-   */
   Future listen(address, port) {
     return HttpServer.bind(address, port).then((HttpServer server) {
       this.httpServer = server;
-      return server.listen(handleConnection);
+      server.listen(handleConnection);
     });
   }
   
@@ -22,11 +19,21 @@ class WebSocketProtocol extends RpcProtocol {
     });
   }
   
-  handleConnection(HttpRequest req) {
-    WebSocketTransformer.upgrade(req).then((WebSocket ws) {
-      WebSocketUser user = new WebSocketUser(ws);
-      userConnectedController.add(user);
-    });
+  void handleConnection(HttpRequest req) {
+    try {
+      WebSocketTransformer.upgrade(req).then((WebSocket ws) {
+        WebSocketUser user;
+        try {
+          user = new WebSocketUser(ws);
+          userConnectedController.add(user);
+        } catch (e) {
+          user.close('Handle error: ' + e);
+        }
+      });
+    } catch (e) {
+      print('Error with HttpRequest: ' + e);
+      req.response.close();
+    }
    
   }
   

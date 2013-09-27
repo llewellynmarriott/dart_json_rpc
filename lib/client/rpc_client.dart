@@ -1,6 +1,6 @@
 part of json_rpc;
 
-class RpcClient {
+class RpcClient extends RpcRequestHandler {
 
   /**
    * [RpcProtocol] to use to connect to the JSON-RPC server.
@@ -36,33 +36,12 @@ class RpcClient {
    */
   Future request(RpcRequest req) => user.request(req);
   
-  Stream on(String method) {
-    // Create completer if it doesn't exist.
-    if(!controllers.containsKey(method)) {
-      controllers[method] = new StreamController.broadcast();
-    }
-    
-    return controllers[method].stream;
-  }
-  
-  void handleRequest(RpcRequest req) {
-    // Create completer if it doesn't exist.
-    if(controllers.containsKey(req.method)) {
-      controllers[req.method].add(req);
-    } else {
-      print('Cannot handle');
-    }
-  }
-  
-  void handleError(RpcResponse req) {
-    errorReceivedController.add(req);
-  }
 
   /**
    * Closes the clients connection to the server.
    */
-  void close() {
-    user.close();
+  void close(String reason) {
+    user.close(reason);
   }
   
 }

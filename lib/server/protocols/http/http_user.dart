@@ -15,7 +15,7 @@ class HttpUser extends RpcUser {
    */
   readRequest() {
     String buffer = "";
-    httpRequest.transform(new StringDecoder()).listen((String data) {
+    httpRequest.transform(new AsciiDecoder()).listen((String data) {
       buffer+=data;
     }, onDone: () {
       receiveJson(buffer);      
@@ -24,9 +24,9 @@ class HttpUser extends RpcUser {
     }, cancelOnError: true);
   }
   
-  Future close() {
+  Future close(String reason) {
     httpRequest.response.close();
-    return super.close();
+    return super.close(reason);
   }
   
   Future sendJson(Object json) {

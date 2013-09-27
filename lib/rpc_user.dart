@@ -31,7 +31,7 @@ abstract class RpcUser {
   /**
    * Returns a [Stream] that will send back when the connection is closed.
    */
-  Stream<RpcRequest> get connectionClosed => requestReceivedController.stream;
+  Stream<RpcRequest> get connectionClosed => connectionClosedController.stream;
   /**
    * Returns a [Stream] that will send back data as an [RpcRequest] when a request is received from the client.
    */
@@ -132,9 +132,9 @@ abstract class RpcUser {
   /**
    * Converts JSON into an [RpcRequest] and handles it.
    */
-  void handleRequestObject(var json) {
+  void handleRequestObject(HashMap json) {
     // Check that 'params' is set.
-    if(json['params'] == null) {
+    if(!json.containsKey('params')) {
       sendError(json['id'], new RpcError(-32600, "Invalid request", "No params present."));
     }
     
@@ -173,7 +173,7 @@ abstract class RpcUser {
       if(resp.error == null) {
         match.responseReceivedCompleter.complete(resp);
       } else {
-        match.responseReceivedCompleter.completeError(RpcError);
+        match.responseReceivedCompleter.completeError(resp.error);
       }
       sentRequests.remove(match);
     }
@@ -202,11 +202,14 @@ abstract class RpcUser {
    * 
    * Code: -32001
    */
-  Future close() {
+  Future close(String reason) {
+    print("Closing: " + reason);
     List<Future> responses = [];
-    for(RpcRequest req in receivedRequests) {
-      responses.add(req.respondError(new RpcError(-32001, "Server error", "Connecting closing.")));
-    }
+    try {
+      for(RpcRequest req in receivedRequests) {
+        responses.add(req.respondError(new RpcError(-32001, "Server error", "Connection closing.")));
+      }     
+    } catch (e) {}
     
     return Future.wait(responses).then((_) {
       connectionClosedController.add(null);

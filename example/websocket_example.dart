@@ -17,18 +17,18 @@ main() {
   server.listen('localhost', 8080).then((_) {
     print('Server listening for connections');
     
-    //RpcClient client = new RpcClient(new WebSocketProtocol());
+    RpcClient client = new RpcClient(new WebSocketProtocol());
     
-    //client.errorReceived.listen((RpcResponse resp) {
-    //  print('Error: ' + resp.error.toString());
-    //});
+    client.errorReceived.listen((RpcResponse resp) {
+      print('Error: ' + resp.error.toString());
+    });
     
-    //client.connectTo("ws://localhost:8080/").then((_) {
-    //  print('Connected');
-    //  client.request(new RpcRequest("trigger.get", {})).then((RpcResponse resp) {
-     //   print('Got resp!');
-     // });
-    //});
+    client.connectTo("ws://localhost:8080/").then((_) {
+      print('Connected');
+      client.request(new RpcRequest("trigger.get", {})).then((RpcResponse resp) {
+        print('Got resp!');
+      });
+    });
   });
   
   

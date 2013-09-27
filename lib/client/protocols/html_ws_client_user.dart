@@ -35,8 +35,8 @@ class HtmlWSClientUser extends RpcUser {
     return c.future;
   }
   
-  Future close() {
+  Future close(String reason) {
     ws.close(1000, 'RPC closing connection');
-    return super.close();
+    return super.close(reason);
   }
 } 

@@ -25,9 +25,9 @@ class WebSocketUser extends RpcUser {
     return c.future;
   }
   
-  Future close() {
+  Future close(String reason) {
     return ws.close().then((_){
-      return super.close(); 
+      return super.close(reason); 
     });
   }
 } 

@@ -12,16 +12,16 @@ class HttpClientUser extends RpcUser {
    */
   void readRequest() {}
   
-  Future close() {
+  Future close(String reason) {
     client.close(force: true);
-    return super.close();
+    return super.close(reason);
   }
   
   Future readResponse(HttpClientResponse resp) {
     Completer c = new Completer();
     
     // Decode response.
-    var stream = resp.transform(new StringDecoder());
+    var stream = resp.transform(new AsciiDecoder());
     
     // Buffer to store data in until it has all been retreived.
     var buffer = "";

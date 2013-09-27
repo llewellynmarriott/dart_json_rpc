@@ -1,0 +1,447 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"dev",
+				"deviceSubNumber"
+			],
+			[
+				"deviceT",
+				"deviceType"
+			],
+			[
+				"Conn",
+				"ConnectionType"
+			],
+			[
+				"err",
+				"error"
+			],
+			[
+				"var",
+				"variable"
+			],
+			[
+				"SIMPLE_C",
+				"SIMPLE_CHECK"
+			],
+			[
+				"quer",
+				"queryCount"
+			],
+			[
+				"re",
+				"requestCompleted"
+			],
+			[
+				"request",
+				"requestCompleted"
+			],
+			[
+				"Jso",
+				"JsonRpcClient"
+			],
+			[
+				"templateLin",
+				"templateLink"
+			],
+			[
+				"free",
+				"freeBytes"
+			],
+			[
+				"tota",
+				"totalBytes"
+			],
+			[
+				"wild",
+				"wildCardMatch"
+			],
+			[
+				"proc",
+				"processNext"
+			],
+			[
+				"res",
+				"resumeProcessing"
+			],
+			[
+				"authen",
+				"authenticating"
+			],
+			[
+				"auth",
+				"authenticating"
+			],
+			[
+				"proces",
+				"process"
+			],
+			[
+				"get",
+				"getDeviceByName"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"mainten",
+				"maintenances"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "lib/server/rpc_server.dart",
+			"settings":
+			{
+				"buffer_size": 3460,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 58.0,
+		"selected_items":
+		[
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"ssjava",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssjavascript",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssjavsc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssjavasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssjson",
+				"Set Syntax: JSON"
+			],
+			[
+				"Diff",
+				"FileDiffs: Menu"
+			],
+			[
+				"diff",
+				"FileDiffs: Menu"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Add Repository"
+			]
+		],
+		"width": 512.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/llewellyn.DCOMP/dart/dart_json_rpc/lib/server/rpc_server.dart",
+		"/C/Users/llewellyn.DCOMP/AppData/Local/Temp/scp03149/usr/share/zabbix/api_jsonrpc.php",
+		"/C/Users/llewellyn.DCOMP/AppData/Local/Temp/scp05530/usr/share/zabbix/api/rpc/class.cjsonrpc.php",
+		"/C/Users/llewellyn.DCOMP/AppData/Local/Temp/scp05689/usr/share/zabbix/api/rpc/class.czbxrpc.php",
+		"/C/Users/llewellyn.DCOMP/AppData/Local/Temp/scp05393/usr/share/zabbix/api/classes/CHost.php",
+		"/C/Users/llewellyn.DCOMP/AppData/Local/Temp/scp13434/usr/share/zabbix/include/classes/api/CZBXAPI.php",
+		"/C/temp/Amicroe Australia Full Price List Tue.htm",
+		"/C/temp/Amicroe Australia Full Price List Mon.htm",
+		"/C/temp/Amicroe Australia Full Price List Mon.txt",
+		"/C/Apache24/htdocs/Testing/OfflineApp/offline.html",
+		"/C/Apache24/htdocs/Testing/OfflineApp/index.html",
+		"/C/Apache24/htdocs/Testing/OfflineApp/appcache.php",
+		"/C/Apache24/htdocs/Testing/OfflineApp/app.manifest",
+		"/C/Apache24/htdocs/Testing/OfflineApp/manifest.php",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/EmailTasks/EmailTasks/bin/Debug/Database.xml",
+		"/C/temp/IN1309.xml",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper_OLD/DeviceCollections/RemoteDesktopManager.js",
+		"/C/temp/publicfolders.vbs",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/EmailTasks/EmailTasks/bin/Release/Settings.xml",
+		"/U/Applications/EmailTasks/Release/Settings.xml",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/EmailTasks/EmailTasks/bin/Debug/Settings.xml",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/EmailTasks/EmailTasks/bin/Release/Microsoft.Win32.TaskScheduler.xml",
+		"/U/Applications/EmailTasks/Release/Database.xml",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/EmailTasks/EmailTasks/bin/Release/Database.xml",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/EmailTasks/EmailTasks/bin/Release/GroupControls.xml",
+		"/U/Applications/EmailTasks/Release/EmailTasks.lock",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/EmailTasks/EmailTasks/bin/Debug/SettingsRedirected.xml",
+		"//srhstawwks1282.srh.local/c$/zabbix_agentd.conf",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/Resources/2/zabbix_agentd.conf.tpl",
+		"/C/zabbix_agentd.conf",
+		"/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-dev/js/zabbix.tools.triggers.js",
+		"/C/zabbix/zabbix_agentd.conf",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/Resources/2/abbreviation-map.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/lm.json",
+		"/C/Users/llewellyn.DCOMP/dart/email_scheduler_server/bin/database/accounts.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/servers.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/wwhs.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/wwhsnhisrv012.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/rnhwarrsrv014.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/rnh-exchange.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/dcs.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/psfp.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/eghs-exchange.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/eghs.json",
+		"/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-dev/js/zabbix.tools.utils.js",
+		"/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-dev/js/zabbix.tools.templates.js",
+		"/C/Users/Llewellyn/Documents/AL9B7zBJPuX9m6hKBbsR7MqF.txt",
+		"/L/hosts",
+		"/C/Windows/System32/Drivers/etc/hosts",
+		"/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-dev/js/zabbix.tasks.js",
+		"/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-dev/js/zabbix.template.js",
+		"/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-dev/js/zabbix.operations.hostgroup.js",
+		"/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-dev/js/zabbix.operations.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/devices.json",
+		"/C/temp/test.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/Settings/Devices.json",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Printers/rnh.json",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/TrustedServers/TrustedServers.json",
+		"/C/temp/test.xml",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/Settings/Notifications.json",
+		"/C/Apache24/htdocs/Zabbix/Monitor2/js/Utils.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/Settings/Devices.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/TrustedServers.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/Settings/InterfaceTypes.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/Settings/DeviceTypes.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/Settings/Clients.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/Settings/GeneratedFiles.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/TelnetDeviceList.json",
+		"/C/Users/llewellyn.DCOMP/Documents/RNHHOPEVSR001 DRAC.rdm",
+		"/C/Users/llewellyn.DCOMP/Documents/rnhwarrsrv017 - Backups.rdm",
+		"/C/Users/llewellyn.DCOMP/Documents/lbbnlakrou000001.rdm",
+		"/C/Users/llewellyn.DCOMP/Documents/rnhwarrswi000001 - Server.rdm",
+		"/C/Users/llewellyn.DCOMP/Documents/rnhwarrrou000001.rdm",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/node_modules/socket.io/index.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/node_modules/socket.io/lib/socket.io.js",
+		"/C/Users/llewellyn.DCOMP/Documents/EntriesExport/EntriesExport.xml",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/final.js",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/ewhs.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/Cache/RDMExport.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/ZabbixHousekeeper.csproj",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/Serializer/Serializer/Serializer.csproj",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/Resources/1.8/zabbix_agentd.conf.tpl",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/Resources/1.8/abbreviation-map.json",
+		"/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.3-prod/js/zabbix.tools.triggers.js",
+		"/C/Users/llewellyn.DCOMP/Documents/RNHBEULVSR001.rdm",
+		"/C/Users/llewellyn.DCOMP/Documents/wwhskanswi000003.rdm",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/bin/.dmExport.json",
+		"/C/Apache24/htdocs/Devices/format.js",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/rnh.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/Resources/abbreviation-map.json",
+		"/C/temp/names.json",
+		"/U/Applications/Zabbix/Scripts/Deploy Agents/rnh.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/Settings/InterfaceTypes.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/Settings/DeviceTypes.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/Settings/Clients.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Filtering/DeviceName.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Utils.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/DeviceTypes.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Clients.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/ZabbixHousekeeper.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/Settings.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/app.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Visual Studio 2012/Projects/ZabbixHousekeeper/ZabbixHousekeeper/Copy of Settings.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Filtering/DeviceTypes.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Filtering/InterfaceTypes.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Filtering/Clients.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Filtering/ClientLocations.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/DeviceCollections/RemoteDesktopManager.js",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/servers.json",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Abbreviations.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Filtering/DeviceNames.js",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/Resources/abbreviation-map.json",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/Resources/2/abbreviation-map.json",
+		"/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.3-prod/js/zabbix.tools.macros.js",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/Resources/user-parameters.txt",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/Resources/2/zabbix_agentd.conf.tpl",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/Resources/1.8/zabbix_agentd.conf.tpl",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/Resources/zabbix_scripts/Get-DirectorySize.ps1",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/Resources/1.8/abbreviation-map.json",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/Resources/1.8/servers.json",
+		"/C/Apache24/htdocs/Zabbix/Monitor2/serversOld.json",
+		"/C/Apache24/htdocs/Zabbix/Monitor2/servers.json",
+		"/C/Users/llewellyn.DCOMP/Downloads/vmware.log",
+		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/zabbix_agentd.conf.tpl",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/DeviceCollections/DeviceCollection.js",
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Abbreviations.json",
+		"/C/Apache24/htdocs/Zabbix/Monitor2/js/main.js",
+		"/C/Apache24/htdocs/Zabbix/Monitor2/js/Zabbix/TemplateBuilder.js"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ewhswycswi000001",
+			"ignore",
+			"\"name\":{\"valid",
+			"\"name\":{\"name\":",
+			"\"name\":\"\"",
+			"select_depen",
+			"\"url\"",
+			"Unsafe",
+			"username",
+			"console",
+			"console.log",
+			"this.processing",
+			"self.processing",
+			"];\n",
+			"resp",
+			"request",
+			"getFakeTrigger",
+			"];\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\"ip\"",
+			"user",
+			"response",
+			"gateway"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "lib/server/rpc_server.dart",
+					"settings":
+					{
+						"buffer_size": 3460,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1055,
+								1055
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Dart/Dart.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
