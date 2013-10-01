@@ -32,6 +32,7 @@ part 'server/protocols/websocket/websocket_user.dart';
 /*
  * Shared
  */
+part 'rpc_param_type.dart';
 part 'rpc_request.dart';
 part 'rpc_response.dart';
 part 'rpc_error.dart';

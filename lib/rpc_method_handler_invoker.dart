@@ -70,8 +70,29 @@ abstract class RpcMethodHandlerInvoker {
   }
   
   Type _getOptionalParamType(MethodMirror methodMirror) {
-    ParameterMirror paramMirror = methodMirror.parameters[1];
-    return paramMirror.
+    // No way to return param type yet.
+    //ParameterMirror paramMirror = methodMirror.parameters[1];
+    //return paramMirror.runtimeType;
+    if(methodMirror.metadata.length > 0) {
+      RpcParamType typeMetadata = _getParamTypeMetadata(methodMirror.metadata);
+      if(typeMetadata != null) {
+        return typeMetadata.type;
+      }
+    }
+    
+    return null;
+  }
+  
+  RpcParamType _getParamTypeMetadata(List<InstanceMirror> metadata) {
+    for(InstanceMirror mirror in metadata) {
+      if(mirror.hasReflectee) {
+        Object reflectee = mirror.reflectee;
+        if(reflectee is RpcParamType) {
+          return reflectee;
+        }
+      }
+    }
+    return null;
   }
   
   String _capitalize(String str) {

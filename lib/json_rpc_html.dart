@@ -25,6 +25,7 @@ part 'server/rpc_server.dart';
 /*
  * Shared
  */
+part 'rpc_param_type.dart';
 part 'rpc_request.dart';
 part 'rpc_response.dart';
 part 'rpc_error.dart';

@@ -13,7 +13,7 @@ void main() {
 }
 
 class Program {
-  static List<Car> cars;
+  static List<Car> cars = new List<Car>();
   static RpcServer server;
   
   static void main() {

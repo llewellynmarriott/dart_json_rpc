@@ -12,6 +12,6 @@ class Car {
   }
   
   static Car fromJson(HashMap json) {
-    return new Car(json['colour'], json['name'], int.parse(json['value']));
+    return new Car(json['colour'], json['name'], json['value']);
   }
 }
