@@ -9,11 +9,11 @@ class RpcRequest {
   /**
    * Parameters of the request.
    */
-  var params;
+  Object params;
   /**
    * ID that will be returned with the response.
    */
-  var id;
+  Object id;
   
   /**
    * Additional parameters to add to the request, used for creating new request types.

@@ -99,7 +99,15 @@
 			"file": "lib/server/rpc_server.dart",
 			"settings":
 			{
-				"buffer_size": 3460,
+				"buffer_size": 1254,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-prod/js/zabbix.tools.triggers.js",
+			"settings":
+			{
+				"buffer_size": 14082,
 				"line_ending": "Windows"
 			}
 		}
@@ -352,7 +360,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -360,15 +368,15 @@
 					"file": "lib/server/rpc_server.dart",
 					"settings":
 					{
-						"buffer_size": 3460,
+						"buffer_size": 1254,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1055,
-								1055
+								0,
+								0
 							]
 						],
 						"settings":
@@ -379,6 +387,33 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-prod/js/zabbix.tools.triggers.js",
+					"settings":
+					{
+						"buffer_size": 14082,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1886,
+								2308
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 978.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

@@ -28,7 +28,10 @@ main() {
       client.request(new RpcRequest("trigger.get", {})).then((RpcResponse resp) {
         print('Got resp!');
       });
+    }, onError: (e) {
+      print("Eroar: " + e.toString());
     });
+    
   });
   
   
