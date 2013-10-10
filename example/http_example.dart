@@ -2,29 +2,24 @@ import '../lib/json_rpc.dart';
 
 main() {
   
-  RpcClient client = new RpcClient(new HttpClientProtocol());
+  RpcProtocol serverProtocol = new HttpProtocol();
+  RpcProtocol clientProtocol = new HttpClientProtocol();
   
-  RpcServer server = new RpcServer(new HttpProtocol());
+  RpcServer server = new RpcServer(serverProtocol);
   
-  server.on("trigger.get").listen((RpcRequest req) {
-    req.respond("Hiiiiii");
+  server.on("helloworld").listen((RpcRequest req) {
+    req.respond("Ahoy!");
   });
   
   server.listen('localhost', 8080).then((_) {
-    client.connectTo("http://localhost:8080/").then((_) {
-      client.request(new RpcRequest("trigger.get", {})).then((RpcResponse resp) {
-        print('Got resp!');
+    RpcClient.connectTo(Uri.parse("http://localhost:8080/"), clientProtocol).then((RpcUser user) {
+      user.request("helloworld", {}).then((RpcResponse resp) {
+        print(resp.result);
+      });
+      
+      user.errorReceived.listen((RpcResponse resp) {
+        print('Error: ' + resp.error.toString());
       });
     });
   });
-  
-  client.errorReceived.listen((RpcResponse resp) {
-    print('Error: ' + resp.error.toString());
-  });
-  
-  
-  
-  
-   
-  
 }

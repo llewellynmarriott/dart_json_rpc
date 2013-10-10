@@ -47,33 +47,30 @@ class Program {
 
 
 class Client {
-  RpcClient client = new RpcClient(new WebSocketProtocol());
+  RpcUser user;
   
-  void main() {
-    client.errorReceived.listen((RpcResponse resp) {
-      print('Error: ' + resp.error.toString());
+  
+  Future connect() {
+    
+    RpcClient.connectTo(Uri.parse("ws://localhost:8080/"), new WebSocketProtocol()).then((RpcUser user) {
+      this.user = user;
+      user.errorReceived.listen((RpcResponse resp) {
+        print('Error: ' + resp.error.toString());
+      });
     });
   }
   
-  Future connect() {
-    return client.connectTo("ws://localhost:8080/");
-  }
-  
   Future addCar(Car c) {
-    return req('car.add', c);
+    return user.request('car.add', c);
   }
   
   Future listCars() {
-    return req('car.get').then((RpcResponse resp) {
+    return user.request('car.get', {}).then((RpcResponse resp) {
       print(resp.result);
     });
   }
   
   Future removeCar(Car c) {
-    return req('car.remove', c);
-  }
-  
-  Future req(String method, [dynamic params]) {
-    return client.request(new RpcRequest(method, params));
+    return user.request('car.remove', c);
   }
 }

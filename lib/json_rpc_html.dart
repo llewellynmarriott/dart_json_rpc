@@ -13,6 +13,8 @@ import 'dart:mirrors';
 part 'client/rpc_client.dart';
 part 'client/protocols/html_ws_client_protocol.dart';
 part 'client/protocols/html_ws_client_user.dart';
+part 'client/protocols/html_http_client_protocol.dart';
+part 'client/protocols/html_http_client_user.dart';
 
 /*
  * Server

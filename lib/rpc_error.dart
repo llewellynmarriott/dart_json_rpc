@@ -3,7 +3,7 @@ part of json_rpc;
 class RpcError {
   int code;
   String message;
-  dynamic data;
+  Object data;
   
   RpcError(this.code, this.message, this.data);
   

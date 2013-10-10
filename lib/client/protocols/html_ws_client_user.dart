@@ -11,7 +11,7 @@ class HtmlWSClientUser extends RpcUser {
   }
   
   listen(MessageEvent e) {
-    receiveJson(e.data);
+    receiveData(e.data);
   }
   
   Future send(RpcRequest req) {
@@ -28,9 +28,9 @@ class HtmlWSClientUser extends RpcUser {
     return c.future;
   }
   
-  Future sendJson(String json) {
+  Future sendData(String data) {
     Completer c = new Completer();
-    ws.send(json);
+    ws.send(data);
     c.complete();
     return c.future;
   }

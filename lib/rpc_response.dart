@@ -22,7 +22,10 @@ class RpcResponse {
    * Version of the supported JSON-RPC protocol.
    */
   String jsonrpc = "2.0";
-  
+  /**
+   * The [RpcUser] that send the response.
+   */
+  RpcUser user;
   /**
    * Creates an [RpcResponse] object from a JSON-RPC result object.
    */

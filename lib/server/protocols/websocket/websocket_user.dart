@@ -12,15 +12,14 @@ class WebSocketUser extends RpcUser {
   
   listen() {
     ws.listen((String data) {
-      receiveJson(data);
+      receiveData(data);
     }, cancelOnError: true);
   }
   
   
-  Future sendJson(String json) {
+  Future sendData(String data) {
     Completer c = new Completer();
-    ws.add(json);
-    print('Sent: $json');
+    ws.add(data);
     c.complete();
     return c.future;
   }

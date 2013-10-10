@@ -47,13 +47,13 @@ class RpcRequest {
   /**
    * Writes a response back to the user who sent this request with a matching ID.
    */
-  Future respond(var data) {
+  Future respond(Object data) {
     var resp = new RpcResponse();
     resp.id = id;
     resp.request = this;
     resp.result = data;
     
-    return user.respond(resp);
+    return user.sendResponse(resp);
   }
   
   Future respondError(RpcError error) {
@@ -61,7 +61,7 @@ class RpcRequest {
     resp.id = id;
     resp.request = this;
     resp.error = error;
-    return user.respond(resp);
+    return user.sendResponse(resp);
   }
   
   /**

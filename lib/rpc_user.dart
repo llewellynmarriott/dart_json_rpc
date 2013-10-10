@@ -1,6 +1,6 @@
 part of json_rpc;
 
-abstract class RpcUser {
+abstract class RpcUser extends RpcMethodHandler {
 
   /**
    * StreamController that recieves data when the connection is closed.
@@ -23,10 +23,7 @@ abstract class RpcUser {
    */
   List<RpcRequest> sentRequests = new List<RpcRequest>();
   
-  int currentId = 0;
-  
-  
-  RpcUser();
+  int _currentId = 1;
   
   /**
    * Returns a [Stream] that will send back when the connection is closed.
@@ -41,19 +38,27 @@ abstract class RpcUser {
    */
   Stream<RpcResponse> get errorReceived => errorReceivedController.stream;
   
+  
+  Future request(String method, Object params) {
+    return sendRequest(new RpcRequest(method, params));
+  }
+  
+  void notify(String method, Object params) {
+    sendRequest(new RpcRequest(method, params)
+    ..id = null);
+  }
+  
   /**
    * Sends an [RpcRequest] request and returns a Future that completes with a [RpcResponse] or completes with nothing if it is a notification (no ID set).
    */
-  Future request(RpcRequest req) {
-    
+  Future sendRequest(RpcRequest req) {
     if(!req.notification) {
-      req.id = currentId;
-      currentId++;
+      req.id = _currentId;
+      _currentId++;
       sentRequests.add(req);
     }
     
-    String json = JSON.stringify(req);
-    sendJson(json);
+    _sendObject(req);
     
     return req.responseReceivedCompleter.future;
   }
@@ -61,10 +66,27 @@ abstract class RpcUser {
   /**
    * Sends an [RpcResponse] response back to the client, returns a Future that completes when the response has been sent.
    */
-  Future respond(RpcResponse resp) {
+  Future sendResponse(RpcResponse resp) {
     removeMatchingRequest(resp);
-    String json = JSON.stringify(resp);
-    sendJson(json);
+    _sendObject(resp);
+  }
+ 
+  
+  /**
+   * Sends an error as a response to the endpoint.
+   */
+  void sendError(int id, RpcError error) {
+    RpcResponse resp = new RpcResponse();
+    resp.error = error;
+    resp.id = id;
+    
+    _sendObject(resp);
+  }
+  
+  
+  Future error(int code, String message, Object data) {
+    return sendResponse(new RpcResponse()
+    ..error = new RpcError(code, message, data));
   }
   
   /**
@@ -73,11 +95,8 @@ abstract class RpcUser {
   void removeMatchingRequest(RpcResponse resp) {
     bool first = false;
     receivedRequests.removeWhere((RpcRequest req) {
-      
       bool match = (req.id == resp.id && first == false);
-      
       if(match) first = true;
-      
       return match;
     });
   }
@@ -85,27 +104,25 @@ abstract class RpcUser {
   /**
    * Must be called once data has been received from the endpoint.
    */
-  void receiveJson(String json) {
-    
-    print('Receive JSON: $json');
-    
-    var obj;
-    
+  void receiveData(String data) {
+    var json;
     // Try to parse the JSON.
     try {
-      obj = JSON.parse(json);
+      json = JSON.parse(data);
     } catch (e) {
       sendError(null, new RpcError(-32700, "Parse error", "An error occured on the server while parsing the JSON text."));
+      // Close connection to prevent flooding, if for example the connection is to something that is not a JSON RPC server.
+      close("An error occured on the server while parsing the JSON text.");
       return;
     }
     
     // Check if it's an array of requets or responses.
-    if(obj is List) {
-      for(var subObj in obj) {
-        handleReceivedObject(subObj);
+    if(json is List) {
+      for(var subObj in json) {
+        handleReceivedJson(subObj);
       }
     } else {
-      handleReceivedObject(obj);
+      handleReceivedJson(json);
     }
     
   }
@@ -113,16 +130,16 @@ abstract class RpcUser {
   /**
    * Checks that the received object has the correct parameters and determines whether or not it is a [RpcRequest] request or a [RpcResponse] response.
    */
-  void handleReceivedObject(var json) {
+  void handleReceivedJson(HashMap json) {
     // Check RPC version
-    if(json['jsonrpc'] != "2.0") {
+    if(json['jsonrpc'] != null && json['jsonrpc'] != "2.0") {
       sendError(json['id'], new RpcError(-32603, "Internal error", "Unsupported protocol version."));
     } else {
       // If it has a method defined then it is a request.
       if(json['method'] != null) {
-        handleRequestObject(json);
+        handleRequestJson(json);
       } else if(json['result'] != null || json['error'] != null) {
-        handleResponseObject(json);
+        handleResponseJson(json);
       } else {
         sendError(json['id'], new RpcError(-32602, "Invalid request", "No method or result present."));
       }
@@ -132,7 +149,7 @@ abstract class RpcUser {
   /**
    * Converts JSON into an [RpcRequest] and handles it.
    */
-  void handleRequestObject(HashMap json) {
+  void handleRequestJson(HashMap json) {
     // Check that 'params' is set.
     if(!json.containsKey('params')) {
       sendError(json['id'], new RpcError(-32600, "Invalid request", "No params present."));
@@ -152,12 +169,14 @@ abstract class RpcUser {
   /**
    * Converts the JSON into an [RpcResponse] and handles it.
    */
-  void handleResponseObject(var json) {
+  void handleResponseJson(HashMap json) {
     RpcResponse resp = RpcResponse.fromJson(json);
+    resp.user = this;
     
-    // Check if it's a notification
+    // Check if ID is null (response ID should not be null)
     if(resp.id == null) {
-      errorReceivedController.add(resp);
+      error(-32602, "Invalid params", "No ID set.");
+      close("No ID set.");
       return ;
     }
     
@@ -168,7 +187,7 @@ abstract class RpcUser {
     
     // If there was no matching ID then sent back an error.
     if(match == null) {
-      sendError(null, new RpcError(-32602, "Invalid params", "No matching id: " + resp.id.toString()));
+      error(-32602, "Invalid params", "No matching id: " + resp.id.toString());
     } else {
       if(resp.error == null) {
         match.responseReceivedCompleter.complete(resp);
@@ -180,22 +199,15 @@ abstract class RpcUser {
     
   }
   
-  /**
-   * Sends an error as a response to the endpoint.
-   */
-  void sendError(int id, RpcError error) {
-    RpcResponse resp = new RpcResponse();
-    resp.error = error;
-    resp.id = id;
-    
-    String json = JSON.stringify(resp);
-    sendJson(json);
+  Future _sendObject(Object obj) {
+    String json = JSON.stringify(obj);
+    sendData(json);
   }
   
   /**
    * Sends back data as a JSON string.
    */
-  Future sendJson(String json) {}
+  Future sendData(String data);
   
   /**
    * Replies to all active requests with a connection closing error and returns a Future that completes when all requests have been closed.

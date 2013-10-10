@@ -16,7 +16,7 @@ class HttpProtocol extends RpcProtocol {
     });
   }
   
-  Future connectTo(String url) {}
+  Future connectTo(Uri uri) {}
   
   _handleConnection(HttpRequest req) {
     HttpUser user = new HttpUser(req);

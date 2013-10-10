@@ -95,22 +95,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "lib/server/rpc_server.dart",
-			"settings":
-			{
-				"buffer_size": 1254,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-prod/js/zabbix.tools.triggers.js",
-			"settings":
-			{
-				"buffer_size": 14082,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -177,6 +161,9 @@
 	"file_history":
 	[
 		"/C/Users/llewellyn.DCOMP/dart/dart_json_rpc/lib/server/rpc_server.dart",
+		"/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-prod/js/zabbix.tools.triggers.js",
+		"/C/Users/llewellyn.DCOMP/Downloads/zbx_export_templates (15).xml",
+		"/C/Users/llewellyn.DCOMP/Downloads/jayrock-0.9.12915/samples/AspNetDemo/NorthwindData.xml",
 		"/C/Users/llewellyn.DCOMP/AppData/Local/Temp/scp03149/usr/share/zabbix/api_jsonrpc.php",
 		"/C/Users/llewellyn.DCOMP/AppData/Local/Temp/scp05530/usr/share/zabbix/api/rpc/class.cjsonrpc.php",
 		"/C/Users/llewellyn.DCOMP/AppData/Local/Temp/scp05689/usr/share/zabbix/api/rpc/class.czbxrpc.php",
@@ -300,10 +287,7 @@
 		"/C/Apache24/htdocs/Zabbix/Monitor2/servers.json",
 		"/C/Users/llewellyn.DCOMP/Downloads/vmware.log",
 		"/C/Users/llewellyn.DCOMP/Documents/PowerShell/Zabbix/zabbix_agentd.conf.tpl",
-		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/DeviceCollections/DeviceCollection.js",
-		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/Abbreviations.json",
-		"/C/Apache24/htdocs/Zabbix/Monitor2/js/main.js",
-		"/C/Apache24/htdocs/Zabbix/Monitor2/js/Zabbix/TemplateBuilder.js"
+		"/C/Users/llewellyn.DCOMP/Documents/Node/ZabbixHousekeeper/DeviceCollections/DeviceCollection.js"
 	],
 	"find":
 	{
@@ -360,64 +344,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "lib/server/rpc_server.dart",
-					"settings":
-					{
-						"buffer_size": 1254,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Dart/Dart.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/Apache24/htdocs/Zabbix/Monitor/Monitor-1.2.4-prod/js/zabbix.tools.triggers.js",
-					"settings":
-					{
-						"buffer_size": 14082,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1886,
-								2308
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 978.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

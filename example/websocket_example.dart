@@ -1,40 +1,25 @@
-import 'package:dart_json_rpc/json_rpc.dart';
+import '../lib/json_rpc.dart';
 
 main() {
   
- RpcServer server = new RpcServer(new WebSocketProtocol());
- 
- 
-  server.on('trigger.get').listen((RpcRequest req) {
-    //req.respondError(1337, "Woah hold up there buddy.", {});
-    req.respond('Hey buddy, got your message!');
-  });
+  RpcProtocol serverProtocol = new WebSocketProtocol();
+  RpcProtocol clientProtocol = serverProtocol;
   
-  server.errorReceived.listen((RpcResponse resp) {
-    print('Error: ' + resp.error.toString());
+  RpcServer server = new RpcServer(serverProtocol);
+  
+  server.on("helloworld").listen((RpcRequest req) {
+    req.respond("Ahoy!");
   });
   
   server.listen('localhost', 8080).then((_) {
-    print('Server listening for connections');
-    
-    RpcClient client = new RpcClient(new WebSocketProtocol());
-    
-    client.errorReceived.listen((RpcResponse resp) {
-      print('Error: ' + resp.error.toString());
-    });
-    
-    client.connectTo("ws://localhost:8080/").then((_) {
-      print('Connected');
-      client.request(new RpcRequest("trigger.get", {})).then((RpcResponse resp) {
-        print('Got resp!');
+    RpcClient.connectTo(Uri.parse("ws://localhost:8080/"), clientProtocol).then((RpcUser user) {
+      user.request("helloworld", {}).then((RpcResponse resp) {
+        print(resp.result);
       });
-    }, onError: (e) {
-      print("Eroar: " + e.toString());
+      
+      user.errorReceived.listen((RpcResponse resp) {
+        print('Error: ' + resp.error.toString());
+      });
     });
-    
   });
-  
-  
-   
-  
 }

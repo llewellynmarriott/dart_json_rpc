@@ -6,9 +6,9 @@ class HtmlWSClientProtocol extends RpcProtocol {
   
   Future listen(address, port) {}
   
-  Future connectTo(String url) {
+  Future connectTo(Uri uri) {
     Completer c = new Completer();
-    var ws = new WebSocket(url);
+    var ws = new WebSocket(uri.toString());
     var client = new HtmlWSClientUser(ws);
     ws.onOpen.listen((_) {
       c.complete(client);

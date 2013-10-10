@@ -1,17 +1,14 @@
 part of json_rpc;
 
-class HttpClientProtocol extends RpcProtocol {
+class HtmlHttpClientProtocol extends RpcProtocol {
   
-  HttpClientProtocol();
+  HtmlHttpClientProtocol();
   
-  /**
-   * Begins listening and handling connections.
-   */
   Future listen(dynamic address, int port) {}
   
   Future connectTo(Uri uri) { 
     Completer c = new Completer(); 
-    c.complete(new HttpClientUser(uri));
+    c.complete(new HtmlHttpClientUser(uri));
     return c.future; 
   }
   

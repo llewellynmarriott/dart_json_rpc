@@ -13,8 +13,8 @@ class WebSocketProtocol extends RpcProtocol {
     });
   }
   
-  Future connectTo(String url) {
-    return WebSocket.connect(url).then((WebSocket ws) {
+  Future connectTo(Uri uri) {
+    return WebSocket.connect(uri.toString()).then((WebSocket ws) {
       return new WebSocketUser(ws);
     });
   }

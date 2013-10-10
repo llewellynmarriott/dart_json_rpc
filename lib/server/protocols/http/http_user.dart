@@ -18,7 +18,7 @@ class HttpUser extends RpcUser {
     httpRequest.transform(new AsciiDecoder()).listen((String data) {
       buffer+=data;
     }, onDone: () {
-      receiveJson(buffer);      
+      receiveData(buffer);      
     }, onError: (e) {
       print(e);
     }, cancelOnError: true);
@@ -29,12 +29,11 @@ class HttpUser extends RpcUser {
     return super.close(reason);
   }
   
-  Future sendJson(Object json) {
+  Future sendData(String data) {
     Completer c = new Completer();
-    httpRequest.response.write(json);
+    httpRequest.response.write(data);
     httpRequest.response.close();
     c.complete();
     return c.future;
-    //return httpRequest.response.close();
   }
 } 
